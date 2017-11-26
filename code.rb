@@ -1085,7 +1085,32 @@ sat_score = JSON.parse(%q|
 |)
 
 def school_to_score(scores,schools_name)
-    scores.each do |score|
+  
+    scores["data"].each do |score|
+      if score[12] == school_name
+        return {english_sat: score[12] , math_sat: score[13] , writing_sat: score[14]}
+      end
     end
     
 end
+#Phase 1 
+puts sat_score
+puts sat_score
+
+def run(schools_name)
+  puts "Chose a school whos avreage SAT score you would like to view"
+  score = gets.chomp 
+  score = score.upcase
+    begin
+    sat_info = school_to_score(scores,schools_name)
+    puts "The avreage English SAT score for this school is #{sat_info[:english_sat]}"
+    puts "The avreage Math SAT score for this school is #{sat_info[:math_sat]}"
+    puts "the avreage Writing SAT score for this school is #{sat_info[:writing_sat]}"
+    
+    rescue 
+    puts "Sorry the school you typed is not on the list."
+    end 
+    
+end 
+#run(sat_score)
+
